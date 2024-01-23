@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  labels:
+    app: cni-benchmark
+    node: a1
+  name: cni-benchmark-a1
+spec:
+  containers:
+    - name: benchmark
+      image: infrabuilder/benchmark-k8s-cni-2024-01
+      command: ["sleep","infinity"]
+      ports:
+      - containerPort: 5201
+        name: iperf3
+      - containerPort: 8080
+        name: statexec
+  nodeName: a1
+--- 
+apiVersion: v1
+kind: Pod
+metadata: 
+  labels:
+    app: cni-benchmark
+    node: a2
+  name: cni-benchmark-a2
+spec:
+  containers:
+    - name: benchmark
+      image: infrabuilder/benchmark-k8s-cni-2024-01
+      command: ["sleep","infinity"]
+      ports:
+      - containerPort: 5201
+        name: iperf3
+      - containerPort: 8080
+        name: statexec
+  nodeName: a2
+--- 
+apiVersion: v1
+kind: Pod
+metadata: 
+  labels:
+    app: cni-benchmark
+    node: a3
+  name: cni-benchmark-a3
+spec:
+  containers:
+    - name: benchmark
+      image: infrabuilder/benchmark-k8s-cni-2024-01
+      command: ["sleep","infinity"]
+      ports:
+      - containerPort: 5201
+        name: iperf3
+      - containerPort: 8080
+        name: statexec
+  nodeName: a3
+
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: cni-benchmark-a1
+spec:
+  selector:
+    app: cni-benchmark
+    node: a1
+  ports:
+  - name: iperf3
+    port: 5201
+    protocol: TCP
+    targetPort: 5201
+  - name: iperf3-udp
+    port: 5201
+    protocol: UDP
+    targetPort: 5201
+  - name: statexec
+    port: 8080
+    targetPort: 8080
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: cni-benchmark-a2
+spec:
+  selector:
+    app: cni-benchmark
+    node: a2
+  ports:
+  - name: iperf3
+    port: 5201
+    protocol: TCP
+    targetPort: 5201
+  - name: iperf3-udp
+    port: 5201
+    protocol: UDP
+    targetPort: 5201
+  - name: statexec
+    port: 8080
+    targetPort: 8080
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: cni-benchmark-a3
+spec:
+  selector:
+    app: cni-benchmark
+    node: a3
+  ports:
+  - name: iperf3
+    port: 5201
+    protocol: TCP
+    targetPort: 5201
+  - name: iperf3-udp
+    port: 5201
+    protocol: UDP
+    targetPort: 5201
+  - name: statexec
+    port: 8080
+    targetPort: 8080
+--- 

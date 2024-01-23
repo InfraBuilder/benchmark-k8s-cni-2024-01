@@ -33,7 +33,7 @@ services:
     # See https://docs.victoriametrics.com/#list-of-command-line-flags
     command: 
     - -search.disableCache # Disable cache for search queries to be able to see new metrics immediately
-    - -retentionPeriod=5y # Be sure to be able to ingest data at 2024-01-01 for a long time
+    - -retentionPeriod=10y # Be sure to be able to ingest data at 2024-01-01 for a long time
     - -dedup.minScrapeInterval=1s # Be sure to be able to ingest data with 1s resolution
 
     ports:

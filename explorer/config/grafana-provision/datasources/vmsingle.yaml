@@ -9,6 +9,7 @@ datasources:
   - name: VictoriaMetrics
     type: prometheus
     access: proxy
+    orgId: 1
     url: http://vmsingle:8428
     default: true
     scrapeInterval: 1s
