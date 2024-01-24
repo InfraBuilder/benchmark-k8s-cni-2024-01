@@ -6,7 +6,7 @@ CURDIR=$(dirname $0)
 VMSERVER=${VMSERVER:-http://localhost:8428}
 DOCKERCOMPOSE_CMD=$(docker-compose version >/dev/null 2>&1 && echo "docker-compose" || echo "docker compose")
 
-DASHBOARDURL="http://localhost:3000/d/statexec/statexec-dashboard"
+DASHBOARDURL="http://localhost:3000/d/benchmark/benchmark"
 
 function waitForVM {
     echo "Waiting for VictoriaMetrics to start"
@@ -34,9 +34,8 @@ function importPromFile {
     waitForVM
     waitForGrafana
 
-    tmpfile=$(mktemp)
     find $import -type f -name "*.prom" -print0 | while IFS= read -r -d '' file; do
-        
+        echo "Importing $file ..."
         # Find instance name
         instance=$(grep -Eo 'instance="[^"]+"' $file | head -n 1 | awk -F'"' '{print $2}'  )
         role=$(grep -Eo 'role="[^"]+"' $file | head -n 1 | awk -F'"' '{print $2}'  )
@@ -52,20 +51,9 @@ function importPromFile {
             curl -so /dev/null -X POST -H "Content-Type: application/json" -d "${annotation}" http://localhost:3000/api/annotations \
                 || { echo "Cannot create grafana annotations from $file" ;  exit 1; }
         done
-
-        startTime=$(grep "^statexec_metric_collect_duration_ms" $file | sed -e 's/.*\} .* //' | head -n 1)
-        endTime=$(grep "^statexec_metric_collect_duration_ms" $file | sed -e 's/.*\} .* //' | tail -n 1)
-        echo "View stats for $file : ${DASHBOARDURL}?orgId=1&from=${startTime}&to=${endTime}&var-instance=${instance}&var-role=${role}"
-        echo -e "${startTime}\n${endTime}" >> $tmpfile
     done
 
-    minStartTime=$(cat $tmpfile | sort -n | head -n 1)
-    maxEndTime=$(cat $tmpfile | sort -n | tail -n 1)
-    rm $tmpfile
-    
-    maxEndTime=$(( ${maxEndTime} + 1000 ))
-
-    open "${DASHBOARDURL}?orgId=1&from=${minStartTime}&to=${maxEndTime}"
+    open "${DASHBOARDURL}"
 }
 
 function start {
