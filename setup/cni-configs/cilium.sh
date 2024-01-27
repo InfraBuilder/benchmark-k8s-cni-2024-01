@@ -5,5 +5,5 @@
 helm install cilium \
     --namespace kube-system \
     --repo https://helm.cilium.io/ \
-    --version 1.14.5 \
+    --version 1.14.6 \
     cilium 
