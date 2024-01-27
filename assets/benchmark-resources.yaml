@@ -10,6 +10,10 @@ spec:
     - name: benchmark
       image: infrabuilder/benchmark-k8s-cni-2024-01
       command: ["sleep","infinity"]
+      securityContext:
+        capabilities:
+          add:
+          - SYS_NICE
       ports:
       - containerPort: 5201
         name: iperf3
@@ -29,6 +33,10 @@ spec:
     - name: benchmark
       image: infrabuilder/benchmark-k8s-cni-2024-01
       command: ["sleep","infinity"]
+      securityContext:
+        capabilities:
+          add:
+          - SYS_NICE
       ports:
       - containerPort: 5201
         name: iperf3
@@ -48,6 +56,10 @@ spec:
     - name: benchmark
       image: infrabuilder/benchmark-k8s-cni-2024-01
       command: ["sleep","infinity"]
+      securityContext:
+        capabilities:
+          add:
+          - SYS_NICE
       ports:
       - containerPort: 5201
         name: iperf3
