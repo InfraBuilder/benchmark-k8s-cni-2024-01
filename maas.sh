@@ -106,34 +106,6 @@ function clean {
     wait $WAITPID
 }
 
-function benchmark {    
-    CURRENTDATE=$(date +%Y%m%d-%H%M%S)
-
-    echo "Starting benchmark"
-    RESULTFILE="$CURDIR/tmp/${RESULTPREFIX}-$1-${CURRENTDATE}"
-    $CURDIR/benchmark/knb -v -cn a2 -sn a3 -o data -f ${RESULTFILE}.knbdata \
-        && $CURDIR/benchmark/knb -fd $RESULTFILE.knbdata > ${RESULTFILE}.summary
-
-    echo "Done - results in $RESULTFILE.summary"
-}
-
-function fullbench {
-    init
-
-    echo "Setup RKE2"
-    rke2-up > /dev/null 2>&1
-
-    echo "Setup CNI $1"
-    setup-cni $1
-
-    benchmark $1
-
-    echo "Tearing down"
-    rke2-down > /dev/null 2>&1
-
-    clean
-}
-
 function connect-ssh {
     case $1 in
         a1)
@@ -194,14 +166,6 @@ while [ "$1" != "" ]; do
             ;;
         cleanup|clean|c)
             clean
-            ;;
-        benchmark|bench|b)
-            benchmark $2
-            shift
-            ;;
-        fullbench|fb|f)
-            fullbench $2
-            shift
             ;;
         ssh|s)
             connect-ssh $2 ${@:3}

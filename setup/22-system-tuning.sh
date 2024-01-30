@@ -9,7 +9,7 @@
 #                                                |___/ 
 #========================================================================
 
-apt install linux-tools-common linux-tools-generic -y
+apt install linux-tools-common linux-tools-generic numactl -y
 
 # Disable CPU frequency scaling
 cpupower frequency-set -g performance
@@ -28,7 +28,7 @@ echo off > /sys/devices/system/cpu/smt/control
 #         |___/                                          |___/ 
 #========================================================================
 
-cat > /etc/sysctl.d/99-benchmark-sysctl.conf <<EOF
+cat >> /etc/sysctl.conf <<EOF
 
 #==============================================================================
 # Tuning for benchmarking with 40Gbps network
@@ -66,6 +66,7 @@ net.core.default_qdisc = fq
 
 EOF
 
+sysctl -p
 
 #========================================================================
 #   ___ ____   ___    _____            _             
@@ -87,3 +88,19 @@ cd i40e-2.24.6/scripts
 # Bind benchmark interface enp129s0f0 with i40e driver to 
 # CPU 8-15 on same NUMA node as the NIC interface
 ./set_irq_affinity 8-15 enp129s0f0
+
+
+#========================================================================
+# EXTRA TUNING
+#========================================================================
+
+# Disable unecessary services
+apt autoremove unattended-upgrades -y
+systemctl stop cron.service
+systemctl stop unattended-upgrades.service
+systemctl stop packagekit.service
+systemctl stop snapd
+systemctl stop snapd.socket
+
+# /usr/sbin/ethtool -G enp129s0f0 rx 8192 tx 8192
+# /usr/sbin/ethtool -C enp129s0f0 adaptive-rx on adaptive-tx on
