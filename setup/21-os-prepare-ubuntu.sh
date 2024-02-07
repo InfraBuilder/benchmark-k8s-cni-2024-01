@@ -23,3 +23,10 @@ cd
 wget https://github.com/InfraBuilder/iperf-bin/releases/download/iperf3-v3.16/iperf3-3.16-linux-amd64
 chmod +x iperf3-3.16-linux-amd64
 mv iperf3-3.16-linux-amd64 /usr/local/bin/iperf3
+
+# Zapping second disk for CSI testing
+sgdisk -Z /dev/nvme1n1
+
+mkfs.ext4 /dev/sda
+mkdir /satadom
+mount /dev/sda /satadom/
