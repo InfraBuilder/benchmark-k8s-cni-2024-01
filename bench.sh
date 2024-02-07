@@ -604,9 +604,14 @@ case $1 in
         bench_baremetal st_baremetal${BENCHSUFFIX}
         ;;
     cni)
+        export NOKUBEPROXY="false"
+        grep -q "#Flag:NOKUBEPROXY" ./setup/cni-configs/$2.sh && export NOKUBEPROXY="true"
+        echo "NOKUBEPROXY = $NOKUBEPROXY"
         bench_cni $2 ${@:2}
         ;;
     tuned-cni|tcni)
+        export NOKUBEPROXY="false"
+        grep -q "#Flag:NOKUBEPROXY" ./setup/cni-configs/$2.sh && export NOKUBEPROXY="true"
         bench_cni st_$2 ${@:3}
         ;;
     *)
