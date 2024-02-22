@@ -14,6 +14,7 @@ kind: Installation
 metadata:
   name: default
 spec:
+  registry: quay.io
   # Configures Calico networking.
   calicoNetwork:
     # Note: The ipPools section cannot be modified post-install.
@@ -32,3 +33,6 @@ metadata:
   name: default
 spec: {}
 EOF
+
+# Enable Wireguard
+kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"wireguardEnabled":true}}'

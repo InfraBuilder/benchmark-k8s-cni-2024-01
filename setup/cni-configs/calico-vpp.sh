@@ -4,6 +4,13 @@
 echo "Setup calico operator"
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/tigera-operator.yaml
 
+
+# If not, or if you're unsure
+curl https://raw.githubusercontent.com/projectcalico/vpp-dataplane/v3.27.0/yaml/generated/calico-vpp-nohuge.yaml \
+  | sed -e 's@SERVICE_PREFIX: 10.43.0.0/16@@' \
+        -e 's/"interfaceName": "eth1",/"interfaceName": "enp129s0f0",/' \
+  | kubectl apply -f -
+
 # IPPool CIDR changed for RKE2 default 10.42.0.0/16
 echo "Setup calico custom resource"
 kubectl apply -f - <<EOF
@@ -14,8 +21,11 @@ kind: Installation
 metadata:
   name: default
 spec:
+  registry: quay.io
   # Configures Calico networking.
   calicoNetwork:
+    linuxDataplane: VPP
+
     # Note: The ipPools section cannot be modified post-install.
     ipPools:
     - blockSize: 26
@@ -32,3 +42,4 @@ metadata:
   name: default
 spec: {}
 EOF
+

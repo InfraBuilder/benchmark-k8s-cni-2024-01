@@ -1,5 +1,6 @@
-
 # Source : https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#install-calico
+
+#Flag:NOKUBEPROXY
 
 echo "Setup calico operator"
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/tigera-operator.yaml
@@ -7,6 +8,15 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2
 # IPPool CIDR changed for RKE2 default 10.42.0.0/16
 echo "Setup calico custom resource"
 kubectl apply -f - <<EOF
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: kubernetes-services-endpoint
+  namespace: tigera-operator
+data:
+  KUBERNETES_SERVICE_HOST: "10.1.1.11"
+  KUBERNETES_SERVICE_PORT: "6443"
+---
 # This section includes base Calico installation configuration.
 # For more information, see: https://docs.tigera.io/calico/latest/reference/installation/api#operator.tigera.io/v1.Installation
 apiVersion: operator.tigera.io/v1
@@ -14,8 +24,13 @@ kind: Installation
 metadata:
   name: default
 spec:
+  registry: quay.io
   # Configures Calico networking.
   calicoNetwork:
+
+    # Enable eBPF mode
+    linuxDataplane: "BPF"
+
     # Note: The ipPools section cannot be modified post-install.
     ipPools:
     - blockSize: 26
