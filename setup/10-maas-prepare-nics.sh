@@ -41,6 +41,14 @@ network:
         addresses:
         - 10.1.1.1
 EOT
+
+# Zapping second disk for CSI testing
+sgdisk -Z /dev/nvme1n1
+
+mkfs.ext4 /dev/sda
+mkdir /satadom
+mount /dev/sda /satadom/
+
 reboot
 EOF
 
