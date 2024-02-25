@@ -11,7 +11,7 @@ services:
     - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     - GF_AUTH_ANONYMOUS_ENABLED=true
     - GF_AUTH_BASIC_ENABLED=false
-    #- GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
+    - GF_INSTALL_PLUGINS=michaeldmoore-scatter-panel
     - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
 
     ports:
