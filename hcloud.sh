@@ -73,6 +73,19 @@ function setup-cni {
     echo ""
 }
 
+
+function setup-csi {
+    echo "Setup CSI $1"
+    $CURDIR/setup/61-setup-csi.sh $1 
+
+    echo "Waiting for all pods to be running or completed"
+    while [ "$(kubectl get pods -A --no-headers | grep -v Running | grep -v Completed)" != "" ]; do
+        echo -n "."
+        sleep 2
+    done
+    echo ""
+}
+
 function rke2-down {
     export A1IP=$(hcloud server ip a1)
     export A2IP=$(hcloud server ip a2)
@@ -192,6 +205,10 @@ while [ "$1" != "" ]; do
             ;;
         setup-cni|cni)
             setup-cni $2
+            shift
+            ;;
+        csi)
+            setup-csi $2
             shift
             ;;
         cleanup|clean|c)
