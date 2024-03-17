@@ -10,7 +10,7 @@ export RESULTPREFIX="hcloud"
 
 function init {
     echo "Setup instances on Hetzner Cloud"
-    SERVEROPTS="--datacenter nbg1-dc3 --image ubuntu-22.04 --type cpx41 --without-ipv6 --ssh-key sshkey.pub "
+    SERVEROPTS="--datacenter nbg1-dc3 --image ubuntu-22.04 --type cpx41 --without-ipv6 --ssh-key $CURDIR/sshkey.pub "
     
     WAITPID=""
     hcloud server create --name a1 $SERVEROPTS &
