@@ -5,7 +5,7 @@
 helm install cilium \
     --namespace kube-system \
     --repo https://helm.cilium.io/ \
-    --version 1.14.6 \
+    --version 1.15.2 \
     --set hubble.relay.enabled=true \
     --set hubble.ui.enabled=true \
     --set hubble.tls.auto.enabled=true \

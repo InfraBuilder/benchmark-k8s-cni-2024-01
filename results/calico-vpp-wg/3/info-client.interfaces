@@ -4,9 +4,9 @@
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host 
        valid_lft forever preferred_lft forever
-2: eth0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 8950 qdisc mq state UNKNOWN group default qlen 500
+2: eth0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 8940 qdisc mq state UNKNOWN group default qlen 500
     link/none 
-    inet 10.42.65.68/32 scope global eth0
+    inet 10.42.65.69/32 scope global eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::6714:9bc2:51b7:508c/64 scope link stable-privacy 
+    inet6 fe80::ad0f:d63d:398c:5c27/64 scope link stable-privacy 
        valid_lft forever preferred_lft forever

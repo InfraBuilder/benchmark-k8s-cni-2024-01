@@ -9,7 +9,7 @@ kubectl create -n kube-system secret generic cilium-ipsec-keys \
 helm install cilium \
     --namespace kube-system \
     --repo https://helm.cilium.io/ \
-    --version 1.14.6 \
+    --version 1.15.2 \
     --set encryption.enabled=true \
     --set encryption.type=ipsec \
     cilium 

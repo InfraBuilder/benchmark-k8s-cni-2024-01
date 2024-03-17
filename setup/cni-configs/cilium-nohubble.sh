@@ -5,6 +5,6 @@
 helm install cilium \
     --namespace kube-system \
     --repo https://helm.cilium.io/ \
-    --version 1.14.6 \
+    --version 1.15.2 \
     cilium \
     --set hubble.enabled=false

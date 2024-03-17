@@ -1,1 +1,1 @@
-kubectl exec -it cni-benchmark-a3 --  statexec -f dtm-client.prom -d 10 -l id=cilium-hubble-full -l run=2 -i dtm -mst 1704067200000 -dbc 11  -c 10.0.0.191 --  iperf3 -c 10.0.0.191 -O 1 -P 8 -Z -t 60 --dont-fragment --json
+kubectl exec -it cni-benchmark-a3 --  statexec -f dtm-client.prom -d 10 -l id=cilium-hubble-full -l run=2 -i dtm -mst 1704067200000 -dbc 11  -c 10.0.1.18 --  iperf3 -c 10.0.1.18 -O 1 -P 8 -Z -t 60 --dont-fragment --json

@@ -13,5 +13,6 @@ kubectl label node -lbeta.kubernetes.io/os=linux kubernetes.io/os=linux --overwr
 helm install kube-ovn \
     --namespace kube-ovn-system --create-namespace \
     --repo https://kubeovn.github.io/kube-ovn/ \
+    --version v1.12.8 \
     kube-ovn \
     --set MASTER_NODES=${A1IP}

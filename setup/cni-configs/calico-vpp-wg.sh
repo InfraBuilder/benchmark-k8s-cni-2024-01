@@ -44,5 +44,20 @@ spec: {}
 EOF
 
 
+# Wait for the calico apiserver to be available
+while [[ $(kubectl get apiserver default -o 'jsonpath={.status.state}') != "Ready" ]]
+do 
+  echo "Waiting for calico apiserver to be available" && sleep 5; 
+done
+
+# Waiting for API server to be available
+kubectl wait --for=condition=Available tigerastatus/apiserver --timeout=300s
+
 # Enable Wireguard
 kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"wireguardEnabled":true}}'
+
+# Wait for the three nodes to get wh public key
+while [[ $(kubectl get node -o yaml |grep projectcalico.org/WireguardPublicKey|wc -l |awk '{print $1}') != "3" ]]
+do 
+  echo "Waiting for calico wireguard public key to be available" && sleep 5; 
+done
