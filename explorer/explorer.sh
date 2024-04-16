@@ -6,7 +6,7 @@ CURDIR=$(dirname $0)
 VMSERVER=${VMSERVER:-http://localhost:8428}
 DOCKERCOMPOSE_CMD=$(docker-compose version >/dev/null 2>&1 && echo "docker-compose" || echo "docker compose")
 
-DASHBOARDURL="http://localhost:3000/d/benchmark/benchmark"
+DASHBOARDURL="http://localhost:3000/d/benchmark-results/benchmark-results"
 
 function waitForVM {
     echo "Waiting for VictoriaMetrics to start"
