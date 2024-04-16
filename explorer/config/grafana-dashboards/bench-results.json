@@ -24,391 +24,416 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "fieldMinMax": false,
-          "mappings": [],
-          "max": 40000000000,
-          "min": 0,
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 80
-              },
-              {
-                "color": "#EAB839",
-                "value": 90
-              },
-              {
-                "color": "green",
-                "value": 96
-              },
-              {
-                "color": "semi-dark-green",
-                "value": 97
-              },
-              {
-                "color": "dark-green",
-                "value": 98
-              }
-            ]
-          },
-          "unit": "bps",
-          "unitScale": true
-        },
-        "overrides": []
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 12,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 648,
-      "options": {
-        "displayMode": "gradient",
-        "maxVizHeight": 300,
-        "minVizHeight": 16,
-        "minVizWidth": 8,
-        "namePlacement": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/.*/",
-          "values": true
-        },
-        "showUnfilled": true,
-        "sizing": "auto",
-        "valueMode": "color"
-      },
-      "pluginVersion": "10.3.3",
-      "targets": [
+      "id": 659,
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "P4169E866C3094E38"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "# Maximum bandwidth result other all runs within a benchmark for a specific test\nmax(\n    benchmark_iperf_bandwidth_bits_per_second{id=~\"$id\",id!~\"(baremetal|flannel)\",test=\"$test\"}\n) by (id) @ start()",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "bw",
-          "range": false,
-          "refId": "bw"
+          "description": "",
+          "gridPos": {
+            "h": 3,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 885,
+          "options": {
+            "code": {
+              "language": "plaintext",
+              "showLineNumbers": false,
+              "showMiniMap": false
+            },
+            "content": "<hr style=\"border-color: yellow\">\n<h1 style=\"color: yellow; font-size: 30px;\"> Bandwidth during test \"dtm\" for every CNI (with each run detail) </h1>",
+            "mode": "markdown"
+          },
+          "pluginVersion": "10.4.2",
+          "transparent": true,
+          "type": "text"
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "P4169E866C3094E38"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "# Maximum bandwidth result other all runs within a benchmark for a specific test\nmax(\n    benchmark_iperf_bandwidth_bits_per_second{id=~\"(baremetal|flannel)\",test=\"$test\"}\n) by (id) @ start()",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "bw",
-          "range": false,
-          "refId": "reference"
-        }
-      ],
-      "title": "Benchmark result for test $test",
-      "transformations": [
-        {
-          "id": "joinByField",
-          "options": {
-            "byField": "id",
-            "mode": "inner"
-          }
-        },
-        {
-          "disabled": true,
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "Time 1": true,
-              "Time 2": true,
-              "Time 3": true,
-              "Time 4": true,
-              "Time 5": true,
-              "Time 6": true,
-              "Time 7": true,
-              "id": false
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": true,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 40000000000,
+              "min": -40000000000,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red"
+                  },
+                  {
+                    "color": "orange",
+                    "value": 30000000000
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 35000000000
+                  },
+                  {
+                    "color": "green",
+                    "value": 38000000000
+                  },
+                  {
+                    "color": "dark-green",
+                    "value": 39000000000
+                  }
+                ]
+              },
+              "unit": "bps"
             },
-            "includeByName": {},
-            "indexByName": {
-              "Time 1": 9,
-              "Time 2": 6,
-              "Time 3": 7,
-              "Time 4": 8,
-              "Time 5": 10,
-              "Time 6": 11,
-              "Value #bw": 1,
-              "Value #cpu": 2,
-              "Value #cpueff": 4,
-              "Value #cpuover": 12,
-              "Value #mem": 3,
-              "Value #memover": 5,
-              "id": 0
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byFrameRefID",
+                  "options": "B"
+                },
+                "properties": [
+                  {
+                    "id": "custom.transform",
+                    "value": "negative-Y"
+                  },
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "shades"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byFrameRefID",
+                  "options": "C"
+                },
+                "properties": [
+                  {
+                    "id": "custom.lineStyle",
+                    "value": {
+                      "dash": [
+                        10,
+                        10
+                      ],
+                      "fill": "dash"
+                    }
+                  },
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "semi-dark-green",
+                      "mode": "thresholds"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byFrameRefID",
+                  "options": "A"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "blue",
+                      "mode": "shades"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 4
+          },
+          "id": 657,
+          "interval": "1s",
+          "maxPerRow": 3,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max"
+              ],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
             },
-            "renameByName": {
-              "Time": "",
-              "Time 1": "",
-              "Time 5": "",
-              "Time 6": "",
-              "Time 7": "",
-              "Value": "BW",
-              "Value #bw": "bandwidth (bit/s)",
-              "Value #cpu": "CPU (cores)",
-              "Value #cpueff": "CPU efficiency (mCPU/Gbit)",
-              "Value #cpuover": "cpu overhead",
-              "Value #cpuse": "cpustat",
-              "Value #mem": "Memory (bytes)",
-              "Value #memover": "Mem overhead BM (bytes)",
-              "Value #reference": "bandwidth (bit/s)",
-              "id": "CNI"
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
             }
-          }
+          },
+          "pluginVersion": "10.2.3",
+          "repeat": "id",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "sum(rate(statexec_network_sent_bytes_total{id=~\"${id}\",instance=~\"$test\",role=\"client\"}[1s]) * 8) by (id,instance,run)",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "sys_bw sent ({{run}})",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "sum(rate(statexec_network_received_bytes_total{id=~\"${id}\",instance=~\"$test\",role=\"server\"}[1s]) * 8) by (id,instance,run)",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "sys_bw rcvd ({{run}})",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "max(\n    benchmark_iperf_bandwidth_bits_per_second{id=~\"$id\",test=\"$test\"}\n) by (run) @ start()",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "iperf_bw result ({{run}})",
+              "range": true,
+              "refId": "C"
+            }
+          ],
+          "title": "[$id][$test] - Bandwidth in bits/s",
+          "type": "timeseries"
         }
       ],
-      "type": "bargauge"
+      "title": "bandwidth detail",
+      "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic",
-            "seriesBy": "last"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "left",
-            "axisSoftMax": 800,
-            "axisSoftMin": 0,
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 2,
-            "pointSize": {
-              "fixed": 33
-            },
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "show": "points"
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unitScale": false
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #mem (lastNotNull)"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "bytes"
-              }
-            ]
-          }
-        ]
-      },
+      "collapsed": true,
       "gridPos": {
-        "h": 12,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
       },
-      "id": 655,
-      "interval": "1s",
-      "options": {
-        "dims": {
-          "exclude": [
-            "color"
-          ],
-          "frame": 0,
-          "x": "Memory"
-        },
-        "legend": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": false
-        },
-        "series": [
-          {
-            "name": "CNI",
-            "pointColor": {
-              "field": "CNI"
-            },
-            "pointSize": {
-              "fixed": 15,
-              "max": 100,
-              "min": 1
-            },
-            "x": "Value #mem (lastNotNull)",
-            "y": "Value #cpu (lastNotNull)"
-          }
-        ],
-        "seriesMapping": "manual",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
+      "id": 683,
+      "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "P4169E866C3094E38"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(# CPU\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n) * 1000 # Converting CPU in mCPU\n\n/\n\n(# BW in Gbit/s\n    # Maximum bandwidth result other all runs within a benchmark for a specific test\n    max(\n        benchmark_iperf_bandwidth_bits_per_second{id=~\"$id\",test=\"$test\"}\n    ) by (id) @ start() \n    / 1G\n)\n\n#or label_set(0,\"id\",\"origin\")\n#or label_set(0,\"id\",\"maxX\")",
-          "format": "table",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "cpu"
+          "description": "",
+          "gridPos": {
+            "h": 3,
+            "w": 24,
+            "x": 0,
+            "y": 2
+          },
+          "id": 817,
+          "options": {
+            "code": {
+              "language": "plaintext",
+              "showLineNumbers": false,
+              "showMiniMap": false
+            },
+            "content": "<hr style=\"border-color: yellow\">\n<h1 style=\"color: yellow; font-size: 30px;\"> CPU and Memory consumption during test \"$test\" for every CNI (with each run detail) </h1>",
+            "mode": "markdown"
+          },
+          "pluginVersion": "10.4.2",
+          "transparent": true,
+          "type": "text"
         },
         {
           "datasource": {
             "type": "prometheus",
             "uid": "P4169E866C3094E38"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "max(\navg_over_time(statexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n) by (id) \n-\nmax(avg_over_time(statexec_memory_used_bytes{id=\"baremetal\",instance=~\"$test\"}[40s]) @ ( end() - 30 ))\n\n\n#or label_set(0,\"id\",\"origin\")\n#or label_set(1.5Gi,\"id\",\"maxX\")",
-          "format": "table",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "mem"
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 8,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 8,
+            "x": 0,
+            "y": 5
+          },
+          "id": 682,
+          "interval": "1s",
+          "maxPerRow": 3,
+          "options": {
+            "legend": {
+              "calcs": [
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": true,
+              "sortBy": "Max",
+              "sortDesc": true
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "10.3.1",
+          "repeat": "id",
+          "repeatDirection": "h",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(# CPU Detail\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[1s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id,run)\n)",
+              "format": "time_series",
+              "instant": false,
+              "legendFormat": "{{id}} cpu in core (run{{run}})",
+              "range": true,
+              "refId": "detail"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "max(\nstatexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}/1Gi\n) by (id,run)",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "{{id}} mem in GB (run{{run}})",
+              "range": true,
+              "refId": "A"
+            }
+          ],
+          "title": "[$id][$test] - CPU and Memory",
+          "type": "timeseries"
         }
       ],
-      "title": "Ressources efficiency per CNI for test \"$test\"",
-      "transformations": [
-        {
-          "id": "joinByField",
-          "options": {
-            "byField": "id",
-            "mode": "inner"
-          }
-        },
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "Value #color": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
-                "operation": "aggregate"
-              },
-              "Value #cpu": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
-                "operation": "aggregate"
-              },
-              "Value #mem": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
-                "operation": "aggregate"
-              },
-              "id": {
-                "aggregations": [],
-                "operation": "groupby"
-              }
-            }
-          }
-        },
-        {
-          "id": "partitionByValues",
-          "options": {
-            "fields": [
-              "id"
-            ],
-            "naming": {
-              "asLabels": true
-            }
-          }
-        },
-        {
-          "id": "labelsToFields",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Value #color (lastNotNull)": "color",
-              "Value #cpu (lastNotNull)": "mCPU par Gbits",
-              "Value #mem (lastNotNull)": "Memory",
-              "id": "CNI"
-            }
-          }
-        }
-      ],
-      "type": "xychart"
+      "title": "cpu+mem detail",
+      "type": "row"
     },
     {
       "collapsed": false,
@@ -416,12 +441,38 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 2
       },
       "id": 653,
       "panels": [],
-      "title": "Row title",
+      "title": "result summary table",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P4169E866C3094E38"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 975,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<hr style=\"border-color: yellow\">\n<h1 style=\"color: yellow; font-size: 30px;\"> Result summary table for test \"$test\" </h1>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "10.4.2",
+      "transparent": true,
+      "type": "text"
     },
     {
       "datasource": {
@@ -455,8 +506,7 @@
                 "value": 80
               }
             ]
-          },
-          "unitScale": true
+          }
         },
         "overrides": [
           {
@@ -713,7 +763,7 @@
         "h": 24,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 6
       },
       "id": 656,
       "options": {
@@ -735,7 +785,7 @@
           }
         ]
       },
-      "pluginVersion": "10.3.3",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -759,36 +809,6 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max(\navg_over_time(statexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n) by (id)",
-          "format": "table",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "mem",
-          "range": true,
-          "refId": "mem"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "#=== CPU per benchmark (id), test(instance), run ==================================\nmax( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n    avg( # CPU average over all servers within the same run (client and server)\n        sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n            rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n        ) by (id,instance,run,role)\n    ) by (id,instance,run)\n) by (id)\n# All tests run during 60s after 10s prequel and 20scd cooldown. \n# Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n# Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n@ ( end() - 30 )\n",
-          "format": "table",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "cpu",
-          "range": true,
-          "refId": "cpu"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
           "expr": "(# CPU\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n) * 1000 # Converting CPU in mCPU\n\n/\n\n(# BW in Gbit/s\n    # Maximum bandwidth result other all runs within a benchmark for a specific test\n    max(\n        benchmark_iperf_bandwidth_bits_per_second{id=~\"$id\",test=\"$test\"}\n    ) by (id) @ start() \n    / 1G\n)",
           "format": "table",
           "hide": false,
@@ -804,28 +824,13 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "max(\navg_over_time(statexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n) by (id)\n-\nmax(\navg_over_time(statexec_memory_used_bytes{id=\"baremetal\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n)\n",
+          "expr": "max(\navg_over_time(statexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n) by (id)\n-\nmax(\navg_over_time(statexec_memory_used_bytes{id=\"baremetal\",instance=~\"d$bmfilter\"}[40s]) @ ( end() - 30 )\n)\n",
           "format": "table",
           "hide": false,
           "instant": true,
           "legendFormat": "memover",
           "range": false,
           "refId": "memover"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(# CNI CPU\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n)\n-\n(# Baremetal CPU\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=\"baremetal\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    )\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n)\n",
-          "format": "table",
-          "hide": true,
-          "instant": false,
-          "legendFormat": "cpuover",
-          "range": true,
-          "refId": "cpuover"
         }
       ],
       "title": "Benchmark result for test $test",
@@ -898,337 +903,292 @@
       "type": "table"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": true,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "axisSoftMin": 0,
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "pointSize": {
-              "fixed": 14
-            },
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "show": "points"
-          },
-          "fieldMinMax": false,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unitScale": true
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #mem (lastNotNull)"
-            },
-            "properties": [
-              {
-                "id": "custom.axisSoftMin",
-                "value": 0
-              },
-              {
-                "id": "unit",
-                "value": "bytes"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 37
-      },
-      "id": 652,
-      "interval": "1s",
-      "options": {
-        "dims": {
-          "frame": 0,
-          "x": "Memory"
-        },
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "right",
-          "showLegend": false
-        },
-        "series": [
-          {}
-        ],
-        "seriesMapping": "auto",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(# CPU\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n) * 1000 # Converting CPU in mCPU\n\n/\n\n(# BW in Gbit/s\n    # Maximum bandwidth result other all runs within a benchmark for a specific test\n    max(\n        benchmark_iperf_bandwidth_bits_per_second{id=~\"$id\",test=\"$test\"}\n    ) by (id) @ start() \n    / 1G\n)",
-          "format": "table",
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "cpu"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "max(\navg_over_time(statexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n) by (id) ",
-          "format": "table",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "mem"
-        }
-      ],
-      "title": "Ressources efficiency per CNI for test \"$test\"",
-      "transformations": [
-        {
-          "id": "groupBy",
-          "options": {
-            "fields": {
-              "Value #cpu": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
-                "operation": "aggregate"
-              },
-              "Value #mem": {
-                "aggregations": [
-                  "lastNotNull"
-                ],
-                "operation": "aggregate"
-              },
-              "id": {
-                "aggregations": [],
-                "operation": "groupby"
-              }
-            }
-          }
-        },
-        {
-          "id": "joinByField",
-          "options": {
-            "byField": "id",
-            "mode": "inner"
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Value #cpu (lastNotNull)": "mCPU par Gbits",
-              "Value #mem (lastNotNull)": "Memory",
-              "id": "CNI"
-            }
-          }
-        }
-      ],
-      "type": "xychart"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unitScale": true
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 37
-      },
-      "id": 650,
-      "interval": "1s",
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "right",
-          "showLegend": true,
-          "sortBy": "Max",
-          "sortDesc": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "10.3.1",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(# CPU Detail\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[1s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n)",
-          "format": "time_series",
-          "instant": false,
-          "legendFormat": "{{id}} detail",
-          "range": true,
-          "refId": "detail"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "P4169E866C3094E38"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "\n(# CPU summary\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n)",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{id}} summary",
-          "range": true,
-          "refId": "summary"
-        }
-      ],
-      "title": "CPU Summary check",
-      "transformations": [],
-      "type": "timeseries"
-    },
-    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 30
       },
-      "id": 25,
+      "id": 658,
       "panels": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "P4169E866C3094E38"
           },
+          "description": "",
           "gridPos": {
-            "h": 12,
+            "h": 3,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 31
           },
-          "id": 31,
+          "id": 930,
           "options": {
             "code": {
               "language": "plaintext",
               "showLineNumbers": false,
               "showMiniMap": false
             },
-            "content": "Test naming : `[ds][tu][sm]`\n- `[ds]` : Direct mode (ip to ip) or via Service (pod to service)\n- `[tu]` : Tcp or Udp protocol\n- `[sm]` : Single stream or Multi streams (8 threads iperf3)\n\nExemples: `dus` stands for Direct Udp Singlestream, `stm` is Service Tcp Multistream\n\n---\n\nRepo: https://github.com/InfraBuilder/benchmark-k8s-cni-2024-01/\n\nTwitter : [@infrabuilder](https://twitter.com/infrabuilder) - [@BlackSwiftFR](https://twitter.com/blackswiftfr)\n\nWeb : [infraBuilder.com](https://infrabuilder.com) - [BlackSwift.fr](https://www.blackswift.fr)",
+            "content": "<hr style=\"border-color: yellow\">\n<h1 style=\"color: yellow; font-size: 30px;\"> Resource efficiency summary for test \"$test\" </h1>",
             "mode": "markdown"
           },
-          "pluginVersion": "10.3.1",
+          "pluginVersion": "10.4.2",
+          "transparent": true,
           "type": "text"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P4169E866C3094E38"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic",
+                "seriesBy": "last"
+              },
+              "custom": {
+                "axisBorderShow": true,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "left",
+                "axisSoftMax": 800,
+                "axisSoftMin": 0,
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 2,
+                "pointSize": {
+                  "fixed": 33
+                },
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "show": "points"
+              },
+              "fieldMinMax": false,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value #mem (lastNotNull)"
+                },
+                "properties": [
+                  {
+                    "id": "unit",
+                    "value": "bytes"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 15,
+            "w": 24,
+            "x": 0,
+            "y": 34
+          },
+          "id": 655,
+          "interval": "1s",
+          "options": {
+            "dims": {
+              "exclude": [
+                "color"
+              ],
+              "frame": 0,
+              "x": "Memory"
+            },
+            "legend": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right",
+              "showLegend": false
+            },
+            "series": [
+              {
+                "name": "CNI",
+                "pointColor": {
+                  "field": "CNI"
+                },
+                "pointSize": {
+                  "fixed": 15,
+                  "max": 100,
+                  "min": 1
+                },
+                "x": "Value #mem (lastNotNull)",
+                "y": "Value #cpu (lastNotNull)"
+              }
+            ],
+            "seriesMapping": "manual",
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "(# CPU\n    #=== CPU per benchmark (id), test(instance), run ==================================\n    max( # Maximum of CPU over the three runs for a test (instance) of a specific CNI (id) \n        avg( # CPU average over all servers within the same run (client and server)\n            sum( # CPU sum over all cores (cpu) and mode (user/system/softirq/...) for each server of every run\n                rate(statexec_cpu_seconds_total{id=~\"$id\",instance=~\"$test\",mode!=\"idle\"}[40s])\n            ) by (id,instance,run,role)\n        ) by (id,instance,run)\n    ) by (id)\n    # All tests run during 60s after 10s prequel and 20scd cooldown. \n    # Timerange must be beween 00:00:00 UTC and 00:01:30, on Jan the 1st of 2024\n    # Then we can take the average cpu over 40s duration, 30s before the end of the range (aka between 00:00:30 and 00:01:00)\n    @ ( end() - 30 )\n) * 1000 # Converting CPU in mCPU\n\n/\n\n(# BW in Gbit/s\n    # Maximum bandwidth result other all runs within a benchmark for a specific test\n    max(\n        benchmark_iperf_bandwidth_bits_per_second{id=~\"$id\",test=\"$test\"}\n    ) by (id) @ start() \n    / 1G\n)\n\n#or label_set(0,\"id\",\"origin\")\n#or label_set(0,\"id\",\"maxX\")",
+              "format": "table",
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "cpu"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "max(\navg_over_time(statexec_memory_used_bytes{id=~\"$id\",instance=~\"$test\"}[40s]) @ ( end() - 30 )\n) by (id) \n-\nmax(avg_over_time(statexec_memory_used_bytes{id=\"baremetal\",instance=~\"d$bmfilter\"}[40s]) @ ( end() - 30 ))\n\n\n#or label_set(0,\"id\",\"origin\")\n#or label_set(1.5Gi,\"id\",\"maxX\")",
+              "format": "table",
+              "hide": false,
+              "instant": false,
+              "legendFormat": "__auto",
+              "range": true,
+              "refId": "mem"
+            }
+          ],
+          "title": "Ressources efficiency per CNI for test \"$test\"",
+          "transformations": [
+            {
+              "id": "joinByField",
+              "options": {
+                "byField": "id",
+                "mode": "inner"
+              }
+            },
+            {
+              "id": "groupBy",
+              "options": {
+                "fields": {
+                  "Value #color": {
+                    "aggregations": [
+                      "lastNotNull"
+                    ],
+                    "operation": "aggregate"
+                  },
+                  "Value #cpu": {
+                    "aggregations": [
+                      "lastNotNull"
+                    ],
+                    "operation": "aggregate"
+                  },
+                  "Value #mem": {
+                    "aggregations": [
+                      "lastNotNull"
+                    ],
+                    "operation": "aggregate"
+                  },
+                  "id": {
+                    "aggregations": [],
+                    "operation": "groupby"
+                  }
+                }
+              }
+            },
+            {
+              "id": "partitionByValues",
+              "options": {
+                "fields": [
+                  "id"
+                ],
+                "naming": {
+                  "asLabels": true
+                }
+              }
+            },
+            {
+              "id": "labelsToFields",
+              "options": {}
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {},
+                "includeByName": {},
+                "indexByName": {},
+                "renameByName": {
+                  "Value #color (lastNotNull)": "color",
+                  "Value #cpu (lastNotNull)": "mCPU par Gbits",
+                  "Value #mem (lastNotNull)": "Memory",
+                  "id": "CNI"
+                }
+              }
+            }
+          ],
+          "type": "xychart"
         }
       ],
+      "title": "resource efficiency",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "id": 25,
+      "panels": [],
       "title": "Informations",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P4169E866C3094E38"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "id": 31,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "Test naming : `[ds][tu][sm]`\n- `[ds]` : Direct mode (ip to ip) or via Service (pod to service)\n- `[tu]` : Tcp or Udp protocol\n- `[sm]` : Single stream or Multi streams (8 threads iperf3)\n\nExemples: `dus` stands for Direct Udp Singlestream, `stm` is Service Tcp Multistream\n\n---\n\nRepo: https://github.com/InfraBuilder/benchmark-k8s-cni-2024-01/\n\nTwitter : [@infrabuilder](https://twitter.com/infrabuilder) - [@BlackSwiftFR](https://twitter.com/blackswiftfr)\n\nWeb : [www.infraBuilder.com](https://www.infrabuilder.com) - [www.BlackSwift.fr](https://www.blackswift.fr)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "10.4.2",
+      "type": "text"
     }
   ],
   "refresh": "",
@@ -1238,7 +1198,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
@@ -1253,7 +1213,7 @@
         "definition": "label_values(benchmark_mem_bytes,id)",
         "hide": 0,
         "includeAll": true,
-        "label": "Benchmarks",
+        "label": "CNI",
         "multi": true,
         "name": "id",
         "options": [],
@@ -1271,31 +1231,22 @@
       {
         "current": {
           "selected": true,
-          "text": [
-            "dtm"
-          ],
-          "value": [
-            "dtm"
-          ]
+          "text": "stm",
+          "value": "stm"
         },
         "hide": 0,
-        "includeAll": true,
-        "label": "Tests",
-        "multi": true,
+        "includeAll": false,
+        "label": "Test",
+        "multi": false,
         "name": "test",
         "options": [
-          {
-            "selected": false,
-            "text": "All",
-            "value": "$__all"
-          },
           {
             "selected": false,
             "text": "dts",
             "value": "dts"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "dtm",
             "value": "dtm"
           },
@@ -1315,7 +1266,7 @@
             "value": "sts"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "stm",
             "value": "stm"
           },
@@ -1334,6 +1285,29 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "tm",
+          "value": "tm"
+        },
+        "definition": "label_values(statexec_memory_used_bytes{instance=\"$test\"},instance)",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "bmfilter",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(statexec_memory_used_bytes{instance=\"$test\"},instance)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "/.(.*)/",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
@@ -1348,6 +1322,6 @@
   "timezone": "utc",
   "title": "Benchmark Results",
   "uid": "benchmark-results",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
